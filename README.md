@@ -69,7 +69,7 @@ The whole test set and checkpoints we used in our experiments can be downloaded 
 
 
 ## Acknowledgments
-Our code is developed based on [CNNDetection](https://github.com/peterwang512/CNNDetection), [GANDCTAnalysis](https://github.com/RUB-SysSec/GANDCTAnalysis), [Fusing](https://github.com/littlejuyan/FusingGlobalandLocal), [Gram-Net](https://github.com/liuzhengzhe/Global_Texture_Enhancement_for_Fake_Face_Detection_in_the-Wild), [LGrad](https://github.com/chuangchuangtan/LGrad), [LNP](https://github.com/Tangsenghenshou/Detecting-Generated-Images-by-Real-Images), [DIRE](https://github.com/ZhendongWang6/DIRE), [UnivFD](https://github.com/Yuheng-Li/UniversalFakeDetect) [GenImage](https://genimage-dataset.github.io/). Thanks for their sharing codes and models.:heart:
+Our code is developed based on [CNNDetection](https://github.com/peterwang512/CNNDetection), [GANDCTAnalysis](https://github.com/RUB-SysSec/GANDCTAnalysis), [Fusing](https://github.com/littlejuyan/FusingGlobalandLocal), [Gram-Net](https://github.com/liuzhengzhe/Global_Texture_Enhancement_for_Fake_Face_Detection_in_the-Wild), [LGrad](https://github.com/chuangchuangtan/LGrad), [LNP](https://github.com/Tangsenghenshou/Detecting-Generated-Images-by-Real-Images), [DIRE](https://github.com/ZhendongWang6/DIRE), [UnivFD](https://github.com/Yuheng-Li/UniversalFakeDetect), [GenImage](https://genimage-dataset.github.io/). Thanks for their sharing codes and models.:heart:
 
 
 ## Citation
