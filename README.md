@@ -62,14 +62,14 @@ python eval_all.py --model_path ./weights/CNNSpot.pth --detect_method CNNSpot  -
 
 ## Dataset
 ### Training Set
-We adopt the training set in [CNNSpot](https://github.com/peterwang512/CNNDetection), you can download it form [link](https://drive.google.com/file/d/1iVNBV0glknyTYGA9bCxT_d0CVTOgGcKh/view?usp=sharing)
+We adopt the training set in [CNNSpot](https://github.com/peterwang512/CNNDetection), you can download it from [link](https://drive.google.com/file/d/1iVNBV0glknyTYGA9bCxT_d0CVTOgGcKh/view?usp=sharing)
 
 ### Test Set and Checkpoints
 The whole test set and checkpoints we used in our experiments can be downloaded from [BaiduNetdisk](https://pan.baidu.com/s/1dZz7suD-X5h54wCC9SyGBA?pwd=l30u) 
 
 
 ## Acknowledgments
-Our code is developed based on [CNNDetection](https://github.com/peterwang512/CNNDetection), [GANDCTAnalysis](https://github.com/RUB-SysSec/GANDCTAnalysis), [Fusing](https://github.com/littlejuyan/FusingGlobalandLocal), [Gram-Net](https://github.com/liuzhengzhe/Global_Texture_Enhancement_for_Fake_Face_Detection_in_the-Wild), [LGrad](https://github.com/chuangchuangtan/LGrad), [LNP](https://github.com/Tangsenghenshou/Detecting-Generated-Images-by-Real-Images), [DIRE](https://github.com/ZhendongWang6/DIRE), [UnivFD](https://github.com/Yuheng-Li/UniversalFakeDetect) . Thanks for their sharing codes and models.:heart:
+Our code is developed based on [CNNDetection](https://github.com/peterwang512/CNNDetection), [GANDCTAnalysis](https://github.com/RUB-SysSec/GANDCTAnalysis), [Fusing](https://github.com/littlejuyan/FusingGlobalandLocal), [Gram-Net](https://github.com/liuzhengzhe/Global_Texture_Enhancement_for_Fake_Face_Detection_in_the-Wild), [LGrad](https://github.com/chuangchuangtan/LGrad), [LNP](https://github.com/Tangsenghenshou/Detecting-Generated-Images-by-Real-Images), [DIRE](https://github.com/ZhendongWang6/DIRE), [UnivFD](https://github.com/Yuheng-Li/UniversalFakeDetect) [GenImage]([https://github.com/chuangchuangtan/LGrad](https://genimage-dataset.github.io/)). Thanks for their sharing codes and models.:heart:
 
 
 ## Citation
