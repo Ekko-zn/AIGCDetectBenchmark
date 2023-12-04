@@ -1,4 +1,4 @@
-##  A Comprehensive Benchmark for AI-generated Image Detection [[Project Page]](http://localhost:8080/AIGCDetect/)
+##  A Comprehensive Benchmark for AI-generated Image Detection [[Project Page]](https://fdmas.github.io/AIGCDetect/)
 
 
 ### collected methods
