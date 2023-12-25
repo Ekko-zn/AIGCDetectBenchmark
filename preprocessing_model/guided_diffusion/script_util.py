@@ -16,7 +16,7 @@ def diffusion_defaults():
         learn_sigma=True,
         diffusion_steps=1000,
         noise_schedule="linear",
-        timestep_respacing="",
+        timestep_respacing="ddim20",
         use_kl=False,
         predict_xstart=False,
         rescale_timesteps=False,
