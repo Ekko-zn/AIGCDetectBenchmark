@@ -1,10 +1,22 @@
-##  A Comprehensive Benchmark for AI-generated Image Detection [[Project Page]](http://localhost:8080/AIGCDetect/)
+<div align="center">
 
-### News
+<div>
+   <a href="https://github.com/Ekko-zn/AIGCDetectBenchmark"><img src="https://visitor-badge.laobi.icu/badge?page_id=Ekko-zn/AIGCDetectBenchmark"/></a>
+   <a href="https://github.com/Ekko-zn/AIGCDetectBenchmark"><img src="https://img.shields.io/github/stars/Ekko-zn/AIGCDetectBenchmark"/></a>
+   <a href=""><img src="https://img.shields.io/badge/Database-Release-green"></a>
+   <a href="https://fdmas.github.io/AIGCDetect/"><img src="https://img.shields.io/badge/page-AIGCDetectBenchmark-orange"/></a>
+</div>
+
+
+</div>
+
+#  A Comprehensive Benchmark for AI-generated Image Detection [[Project Page]](http://localhost:8080/AIGCDetect/)
+
+## News
 :star2: [2023-12-25] Release training code for 8 detection methods
 
 
-### Collected Methods
+## Collected Methods
 
 
 |method|paper|test code|train code|
@@ -19,10 +31,10 @@
 |UnivFD|Towards Universal Fake Image Detectors that Generalize Across Generative Models|:white_check_mark:|:white_check_mark:|
 |RPTC|Rich and Poor Texture Contrast: A Simple yet Effective Approach for AI-generated Image Detection|⚙️|⚙️|
 
-#### Setup
+## Setup
 Refer to [CNNSpot](https://github.com/peterwang512/CNNDetection) and [Dire](https://github.com/ZhendongWang6/DIRE)
 
-#### Training
+## Training
 For LGrad, LNP and DIRE, we recommand you use files `gen_imggrad.py`, `test_sidd_rgb_test.py` and `compute_dire.py` in folder `preprocessing` to get processed images. Then use the processed images to train a ResNet-50 classifier (like CNNSpot).
 1. CNNSpot, FreDect, Fusing, Gram-Net
    ```
@@ -51,7 +63,7 @@ For LGrad, LNP and DIRE, we recommand you use files `gen_imggrad.py`, `test_sidd
 
 
 
-### Test on datasets
+## Test on datasets
 ```
 usage: eval_all.py [-h] [--rz_interp RZ_INTERP] [--blur_sig BLUR_SIG] [--jpg_method JPG_METHOD] [--jpg_qual JPG_QUAL] [--batch_size BATCH_SIZE] [--loadSize LOADSIZE] [--CropSize CROPSIZE] [--no_crop]
                    [--no_resize] [--no_flip] [--model_path MODEL_PATH] [--detect_method DETECT_METHOD] [--noise_type NOISE_TYPE] [--LNP_modelpath LNP_MODELPATH] [--DIRE_modelpath DIRE_MODELPATH]
