@@ -10,7 +10,7 @@
 
 </div>
 
-#  A Comprehensive Benchmark for AI-generated Image Detection [[Project Page]](http://localhost:8080/AIGCDetect/)
+#  A Comprehensive Benchmark for AI-generated Image Detection
 
 ## News
 :star2: [2023-12-25] Release training code for 8 detection methods
