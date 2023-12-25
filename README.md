@@ -1,20 +1,53 @@
-##  A Comprehensive Benchmark for AI-generated Image Detection [[Project Page]](https://fdmas.github.io/AIGCDetect/)
+##  A Comprehensive Benchmark for AI-generated Image Detection [[Project Page]](http://localhost:8080/AIGCDetect/)
+
+### News
+:bulb: [2023-12-25] Release training code for 8 detect methods
 
 
-### collected methods
+### Collected Methods
 
 
 |method|paper|test code|train code|
 |:--------:|:------:|:----:|:------:|
-|CNNSpot|CNN-generated images are surprisingly easy to spot...for now|:white_check_mark:|⚙️|
-|FreDect|Leveraging Frequency Analysis for Deep Fake Image Recognition|:white_check_mark:|⚙️|
-|Fusing|Fusing global and local features for generalized AI-synthesized image detection|:white_check_mark:|⚙️|
-|Gram-Net|Global Texture Enhancement for Fake Face Detection In the Wild|:white_check_mark:|⚙️|
-|LGrad|Learning on Gradients: Generalized Artifacts Representation for GAN-Generated Images Detection|:white_check_mark:|⚙️|
-|LNP|Detecting Generated Images by Real Images|:white_check_mark:|⚙️|
-|DIRE|DIRE for Diffusion-Generated Image Detection|:white_check_mark:|⚙️|
-|UnivFD|Towards Universal Fake Image Detectors that Generalize Across Generative Models|:white_check_mark:|⚙️|
+|CNNSpot|CNN-generated images are surprisingly easy to spot...for now|:white_check_mark:|:white_check_mark:|
+|FreDect|Leveraging Frequency Analysis for Deep Fake Image Recognition|:white_check_mark:|:white_check_mark:|
+|Fusing|Fusing global and local features for generalized AI-synthesized image detection|:white_check_mark:|:white_check_mark:|
+|Gram-Net|Global Texture Enhancement for Fake Face Detection In the Wild|:white_check_mark:|:white_check_mark:|
+|LGrad|Learning on Gradients: Generalized Artifacts Representation for GAN-Generated Images Detection|:white_check_mark:|:white_check_mark:|
+|LNP|Detecting Generated Images by Real Images|:white_check_mark:|:white_check_mark:|
+|DIRE|DIRE for Diffusion-Generated Image Detection|:white_check_mark:|:white_check_mark:|
+|UnivFD|Towards Universal Fake Image Detectors that Generalize Across Generative Models|:white_check_mark:|:white_check_mark:|
 |RPTC|Rich and Poor Texture Contrast: A Simple yet Effective Approach for AI-generated Image Detection|⚙️|⚙️|
+
+#### Setup
+Refer to [CNNSpot](https://github.com/peterwang512/CNNDetection) and [Dire](https://github.com/ZhendongWang6/DIRE)
+
+#### Training
+For LGrad, LNP and DIRE, we recommand you use files `gen_imggrad.py`, `test_sidd_rgb_test.py` and `compute_dire.py` in folder `preprocessing` to get processed images. Then use the processed images to train a ResNet-50 classifier (like CNNSpot).
+1. CNNSpot, FreDect, Fusing, Gram-Net
+   ```
+   python train.py --name test --dataroot [your data path] --detect_method [CNNSpot, FreDect, Fusing, Gram] --blur_prob 0.1 --blur_sig 0.0,3.0 --jpg_prob 0.1 --jpg_method cv2,pil --jpg_qual 30,100 
+   ```
+2. LGrad
+   ```
+   sh preprocessing/LGrad/transform_img2grad.sh # change file paths
+   python train.py --name test --dataroot [your data path] --detect_method CNNSpot --blur_prob 0.1 --blur_sig 0.0,3.0 --jpg_prob 0.1 --jpg_method cv2,pil --jpg_qual 30,100 
+   ```
+3. LNP
+   ```
+   sh preprocessing/LNP/test_sidd_rgb_test.py --input_dir [your data path] --result_dir [your data path]  # change file paths
+   python train.py --name test --dataroot [your data path] --detect_method CNNSpot --blur_prob 0.1 --blur_sig 0.0,3.0 --jpg_prob 0.1 --jpg_method cv2,pil --jpg_qual 30,100 
+   ```
+4. DIRE
+   ```
+   sh preprocessing/DIRE/compute_dire.sh  # change file paths
+   python train.py --name test --dataroot [your data path] --detect_method CNNSpot --blur_prob 0.1 --blur_sig 0.0,3.0 --jpg_prob 0.1 --jpg_method cv2,pil --jpg_qual 30,100 
+   ```
+5. UnivFD
+   ```
+   python train.py --name test --dataroot [your data path] --detect_method UnivFD --fix_backbone --blur_prob 0.1 --blur_sig 0.0,3.0 --jpg_prob 0.1 --jpg_method cv2,pil --jpg_qual 30,100 
+   ```
+
 
 
 
@@ -62,14 +95,14 @@ python eval_all.py --model_path ./weights/CNNSpot.pth --detect_method CNNSpot  -
 
 ## Dataset
 ### Training Set
-We adopt the training set in [CNNSpot](https://github.com/peterwang512/CNNDetection), you can download it from [link](https://drive.google.com/file/d/1iVNBV0glknyTYGA9bCxT_d0CVTOgGcKh/view?usp=sharing) 
+We adopt the training set in [CNNSpot](https://github.com/peterwang512/CNNDetection), you can download it form [link](https://drive.google.com/file/d/1iVNBV0glknyTYGA9bCxT_d0CVTOgGcKh/view?usp=sharing)
 
 ### Test Set and Checkpoints
-The whole test set and checkpoints we used in our experiments can be downloaded from [BaiduNetdisk](https://pan.baidu.com/s/1dZz7suD-X5h54wCC9SyGBA?pwd=l30u) or [Google Drive](https://drive.google.com/drive/folders/1p4ewuAo7d5LbNJ4cKyh10Xl9Fg2yoFOw?usp=drive_link).
+The whole test set and checkpoints we used in our experiments can be downloaded from [BaiduNetdisk](https://pan.baidu.com/s/1dZz7suD-X5h54wCC9SyGBA?pwd=l30u) 
 
 
 ## Acknowledgments
-Our code is developed based on [CNNDetection](https://github.com/peterwang512/CNNDetection), [GANDCTAnalysis](https://github.com/RUB-SysSec/GANDCTAnalysis), [Fusing](https://github.com/littlejuyan/FusingGlobalandLocal), [Gram-Net](https://github.com/liuzhengzhe/Global_Texture_Enhancement_for_Fake_Face_Detection_in_the-Wild), [LGrad](https://github.com/chuangchuangtan/LGrad), [LNP](https://github.com/Tangsenghenshou/Detecting-Generated-Images-by-Real-Images), [DIRE](https://github.com/ZhendongWang6/DIRE), [UnivFD](https://github.com/Yuheng-Li/UniversalFakeDetect), [GenImage](https://genimage-dataset.github.io/). Thanks for their sharing codes and models.:heart:
+Our code is developed based on [CNNDetection](https://github.com/peterwang512/CNNDetection), [FreDect](https://github.com/RUB-SysSec/GANDCTAnalysis), [Fusing](https://github.com/littlejuyan/FusingGlobalandLocal), [Gram-Net](https://github.com/liuzhengzhe/Global_Texture_Enhancement_for_Fake_Face_Detection_in_the-Wild), [LGrad](https://github.com/chuangchuangtan/LGrad), [LNP](https://github.com/Tangsenghenshou/Detecting-Generated-Images-by-Real-Images), [DIRE](https://github.com/ZhendongWang6/DIRE), [UnivFD](https://github.com/Yuheng-Li/UniversalFakeDetect) . Thanks for their sharing codes and models.:heart:
 
 
 ## Citation

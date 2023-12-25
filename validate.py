@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from networks.resnet import resnet50
 from sklearn.metrics import average_precision_score, precision_recall_curve, accuracy_score
-from base_options import BaseOptions
+from options import TestOptions
 from data import create_dataloader, create_dataloader_new
 
 
@@ -34,7 +34,7 @@ def validate_PSM(model, data_loader):
     return y_true, y_pred
 
 
-def validate_single(model, opt, val):
+def validate_single(model, opt):
     opt=get_processing_model(opt)
     real_img_list = loadpathslist(opt.dataroot,'0_real')        
     real_label_list = [0 for _ in range(len(real_img_list))]
@@ -43,7 +43,7 @@ def validate_single(model, opt, val):
     imgs = real_img_list+fake_img_list
     labels = real_label_list+fake_label_list
     y_true, y_pred = [], []
-    if opt.detect_method == "PSM":
+    if opt.detect_method == "Fusing":
         data_loader = create_dataloader_new(opt)
         y_true, y_pred = validate_PSM(model, data_loader)
     else:
@@ -68,13 +68,13 @@ def validate_single(model, opt, val):
     return acc, ap, r_acc, f_acc, y_true, y_pred
 
 
-def validate(model, opt, val):
+def validate(model, opt):
     
     opt = get_processing_model(opt)
     
     data_loader = create_dataloader_new(opt)
     y_true, y_pred = [], []
-    if opt.detect_method == "PSM":
+    if opt.detect_method == "Fusing":
         y_true, y_pred = validate_PSM(model, data_loader)
     else:
         # with torch.no_grad():
@@ -96,7 +96,7 @@ def validate(model, opt, val):
 
 
 if __name__ == '__main__':
-    opt = BaseOptions().parse(print_options=False)
+    opt = TestOptions().parse(print_options=False)
 
     model = resnet50(num_classes=1)
     state_dict = torch.load(opt.model_path, map_location='cpu')

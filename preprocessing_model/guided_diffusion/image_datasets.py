@@ -8,7 +8,8 @@ from mpi4py import MPI
 import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset
-from guided_diffusion import logger
+import sys
+from . import logger
 from io import BytesIO
 from scipy.ndimage import gaussian_filter
 import torchvision
@@ -191,6 +192,8 @@ class ImageDataset_for_reverse(Dataset):
             pil_image.load()
 
         pil_image = pil_image.convert("RGB")
+        height,weight=pil_image.size
+
    
 
         
@@ -200,15 +203,19 @@ class ImageDataset_for_reverse(Dataset):
             # quit()
             pil_image = pil_jpg_eval(pil_image,95)
         elif self.noise_type == 'resize':
-            # print('resize')
-            pil_image = torchvision.transforms.Resize((128,128))(pil_image) #可以改成缩放多少倍，因为图像质量各不相同
+           
+            # self.resolution=int(self.resolution/2)
+            pil_image = torchvision.transforms.Resize((int(height/2),int(weight/2)))(pil_image) #可以改成缩放多少倍，因为图像质量各不相同
+            height,weight=pil_image.size
+            
+
         elif self.noise_type == 'blur':
             # print('blur')
             pil_image = np.array(pil_image)
-            gaussian_blur(pil_image, 1.5)
+            gaussian_blur(pil_image, 1)
             pil_image =  Image.fromarray(pil_image)
 
-            
+
         if self.random_crop:
             arr = random_crop_arr(pil_image, self.resolution)
         else:

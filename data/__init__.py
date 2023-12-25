@@ -60,9 +60,9 @@ def create_dataloader(opt):
 
     
 def create_dataloader_new(opt):
-    shuffle = False
+    shuffle = True if opt.isTrain else False
     dataset = read_data_new(opt)
-    if opt.detect_method=='PSM':
+    if opt.detect_method=='Fusing':
         data_loader = torch.utils.data.DataLoader(dataset,
                                               batch_size=opt.batch_size,
                                               shuffle=shuffle,
@@ -74,3 +74,4 @@ def create_dataloader_new(opt):
                                               shuffle=shuffle,
                                               num_workers=int(0))
     return data_loader
+

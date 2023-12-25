@@ -11,9 +11,10 @@ class BaseModel(nn.Module):
         super(BaseModel, self).__init__()
         self.opt = opt
         self.total_steps = 0
+        self.isTrain = opt.isTrain
 
         self.save_dir = os.path.join(opt.checkpoints_dir, opt.name)
-        self.device = torch.device('cuda:{}'.format(opt.gpu_ids[0])) if opt.gpu_ids else torch.device('cpu')
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     def save_networks(self, epoch):
         save_filename = 'model_epoch_%s.pth' % epoch

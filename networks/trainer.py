@@ -5,7 +5,7 @@ from networks.resnet import resnet50
 from networks.resnet import resnet18
 from networks.base_model import BaseModel, init_weights
 from networks.StegNet.StegNet import Net
-import networks.resnet18_gram as ResnetGram
+from util import get_model
 
 class Trainer(BaseModel):
     def name(self):
@@ -16,11 +16,8 @@ class Trainer(BaseModel):
 
         if self.isTrain and not opt.continue_train:
             # 会要用预训练的模型
-            self.model = resnet50(pretrained=False)
-            # self.model = ResnetGram.resnet50(pretrained=True)
-            # self.model = Net()
-            self.model.fc = nn.Linear(2048, 1)
-            torch.nn.init.normal_(self.model.fc.weight.data, 0.0, opt.init_gain)
+            self.model = get_model(opt)
+
 
         if not self.isTrain or opt.continue_train:
             self.model = resnet50(num_classes=1)
@@ -28,18 +25,29 @@ class Trainer(BaseModel):
         if self.isTrain:
             self.loss_fn = nn.BCEWithLogitsLoss()
             # initialize optimizers
+            params = self.model.parameters()
+            if self.opt.detect_method == "UnivFD" and self.opt.fix_backbone:
+                params = []
+                for name, p in self.model.named_parameters():
+                    if  name=="fc.weight" or name=="fc.bias": 
+                        params.append(p) 
+                    else:
+                        p.requires_grad = False
             if opt.optim == 'adam':
-                self.optimizer = torch.optim.Adam(self.model.parameters(),
+                if self.opt.detect_method == "UnivFD":
+                    self.optimizer = torch.optim.AdamW(params, lr=opt.lr, betas=(opt.beta1, 0.999), weight_decay=opt.weight_decay)
+                else:
+                    self.optimizer = torch.optim.Adam(params,
                                                   lr=opt.lr, betas=(opt.beta1, 0.999))
             elif opt.optim == 'sgd':
-                self.optimizer = torch.optim.SGD(self.model.parameters(),
+                self.optimizer = torch.optim.SGD(params,
                                                  lr=opt.lr, momentum=0.0, weight_decay=0)
             else:
                 raise ValueError("optim should be [adam, sgd]")
 
         if not self.isTrain or opt.continue_train:
             self.load_networks(opt.epoch)
-        self.model.to(opt.gpu_ids[0])
+        self.model.to(self.device)
 
 
     def adjust_learning_rate(self, min_lr=1e-6):
@@ -50,21 +58,31 @@ class Trainer(BaseModel):
         return True
 
     def set_input(self, input):
-        self.input = input[0].to(self.device)
-        self.label = input[1].to(self.device).float()
+     
+        if self.opt.detect_method == "Fusing":
+            self.input_img = input[0] # (batch_size, 6, 3, 224, 224)
+            self.cropped_img = input[1].to(self.device)
+            self.label = input[2].to(self.device).float() #(batch_size)
+            self.scale = input[3].to(self.device).float()
+        else:
+            self.input = input[0].to(self.device)
+            self.label = input[1].to(self.device).float()
 
 
     def forward(self):
-        self.output = self.model(self.input)
+        if self.opt.detect_method == "Fusing":
+            self.output = self.model(self.input_img, self.cropped_img, self.scale)
+        elif self.opt.detect_method == "UnivFD":
+            self.output = self.model(self.input)
+            self.output = self.output.view(-1).unsqueeze(1)
+        else: 
+            self.output = self.model(self.input)
 
     def get_loss(self):
         return self.loss_fn(self.output.squeeze(1), self.label)
 
     def optimize_parameters(self):
         self.forward()
-        # print(self.output.size())
-        # print(self.label.size())
-       
         self.loss = self.loss_fn(self.output.squeeze(1), self.label)
         self.optimizer.zero_grad()
         self.loss.backward()
