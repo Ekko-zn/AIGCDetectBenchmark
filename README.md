@@ -3,7 +3,7 @@
 <div>
    <a href="https://github.com/Ekko-zn/AIGCDetectBenchmark"><img src="https://visitor-badge.laobi.icu/badge?page_id=Ekko-zn/AIGCDetectBenchmark"/></a>
    <a href="https://github.com/Ekko-zn/AIGCDetectBenchmark"><img src="https://img.shields.io/github/stars/Ekko-zn/AIGCDetectBenchmark"/></a>
-   <a href=""><img src="https://img.shields.io/badge/Database-Release-green"></a>
+   <a href="https://drive.google.com/drive/folders/1p4ewuAo7d5LbNJ4cKyh10Xl9Fg2yoFOw?usp=drive_link"><img src="https://img.shields.io/badge/Database-Release-green"></a>
    <a href="https://fdmas.github.io/AIGCDetect/"><img src="https://img.shields.io/badge/page-AIGCDetectBenchmark-orange"/></a>
 </div>
 
@@ -110,7 +110,7 @@ python eval_all.py --model_path ./weights/CNNSpot.pth --detect_method CNNSpot  -
 We adopt the training set in [CNNSpot](https://github.com/peterwang512/CNNDetection), you can download it form [link](https://drive.google.com/file/d/1iVNBV0glknyTYGA9bCxT_d0CVTOgGcKh/view?usp=sharing)
 
 ### Test Set and Checkpoints
-The whole test set and checkpoints we used in our experiments can be downloaded from [BaiduNetdisk](https://pan.baidu.com/s/1dZz7suD-X5h54wCC9SyGBA?pwd=l30u) 
+The whole test set and checkpoints we used in our experiments can be downloaded from [BaiduNetdisk](https://pan.baidu.com/s/1dZz7suD-X5h54wCC9SyGBA?pwd=l30u) or [Google Drive](https://drive.google.com/drive/folders/1p4ewuAo7d5LbNJ4cKyh10Xl9Fg2yoFOw?usp=drive_link)
 
 
 ## Acknowledgments
