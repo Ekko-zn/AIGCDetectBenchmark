@@ -13,7 +13,7 @@
 #  A Comprehensive Benchmark for AI-generated Image Detection
 
 ## News
-:star2: [2023-12-25] Release training code for 8 detection methods
+:star2: [2023-12-25:christmas_tree:] Release training code for 8 detection methods
 
 
 ## Collected Methods
