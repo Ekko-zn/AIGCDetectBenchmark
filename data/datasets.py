@@ -44,20 +44,6 @@ def binary_dataset(opt, root):
     else:
         rz_func = transforms.Lambda(lambda img: custom_resize(img, opt))
 
-    # dset = datasets.ImageFolder(
-    #         root,
-    #         transforms.Compose([
-    #             rz_func,
-    #             # 加入了变成灰度图像的操作
-    #             transforms.Grayscale(num_output_channels=3),
-    #             transforms.Lambda(lambda img: data_augment(img, opt)),
-    #             crop_func,
-    #             flip_func,
-    #             transforms.ToTensor(),
-    #             transforms.Normalize(mean=[0.485], std=[0.229]),
-    #         ]))
-    # return dset
-    # 原始的预处理过程
     dset = datasets.ImageFolder(
             root,
             transforms.Compose([
@@ -97,7 +83,6 @@ def custom_resize(img, opt):
     # quit()
     interp = sample_discrete(opt.rz_interp)
     img = torchvision.transforms.Resize((opt.loadSize,opt.loadSize))(img) 
-    # return TF.resize(img, opt.loadSize, interpolation=rz_dict[interp])
     return img
 
 
@@ -108,7 +93,6 @@ def custom_augment(img, opt):
     if opt.noise_type=='resize':
         if opt.detect_method=='Fusing':
             height, width = img.shape[0], img.shape[1]
-            # print('width, heig/ht:'+str(width)+','+str(height))
             img = resize(img, (int(height/2), int(width/2)))
         else:
             height, width = img.height, img.width
@@ -146,7 +130,7 @@ def loadpathslist(root,flag):
 
 def process_img(img,opt,imgname,target):
     if opt.detect_method in ['CNNSpot','Gram']:
-        img = processing(img,opt)
+        img = processing(img,opt,'imagenet')
     elif opt.detect_method == 'FreDect':
         img = processing_DCT(img,opt)
     elif opt.detect_method == 'Fusing':
@@ -160,7 +144,7 @@ def process_img(img,opt,imgname,target):
     elif opt.detect_method == 'DIRE':
         img = processing_DIRE(img,opt,imgname)
     elif opt.detect_method == 'UnivFD':
-            img = processing_UnivFD(img, opt)
+            img = processing(img, opt,'clip')
     else:
         raise ValueError(f"Unsupported model_type: {opt.detect_method}")
 
@@ -175,7 +159,6 @@ class read_data_new():
         self.opt = opt
         self.root = opt.dataroot
         real_img_list = loadpathslist(self.root,'0_real')    
-        # real_img_list=[]    
         real_label_list = [0 for _ in range(len(real_img_list))]
         fake_img_list = loadpathslist(self.root,'1_fake')
         fake_label_list = [1 for _ in range(len(fake_img_list))]
@@ -198,7 +181,7 @@ class read_data_new():
         
         
         if self.opt.detect_method in ['CNNSpot','Gram','Steg']:
-            img = processing(img,self.opt)
+            img = processing(img,self.opt,'imagenet')
         elif self.opt.detect_method == 'FreDect':
             img = processing_DCT(img,self.opt)
         elif self.opt.detect_method == 'Fusing':
@@ -213,7 +196,7 @@ class read_data_new():
             img = processing_DIRE(img,self.opt,imgname)
         elif self.opt.detect_method == 'UnivFD':
             # print("UnivFD processing")
-            img = processing_UnivFD(img,self.opt)
+            img = processing(img,self.opt,'clip')
         else:
             raise ValueError(f"Unsupported model_type: {self.opt.detect_method}")
 

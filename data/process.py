@@ -33,7 +33,6 @@ def data_augment(img, opt):
     if random() < opt.blur_prob:
 
         sig = sample_continuous(opt.blur_sig)
-        # print('blur:'+str(sig))
         gaussian_blur(img, sig)
 
     if random() < opt.jpg_prob:
@@ -183,7 +182,7 @@ def custom_resize(img, opt):
 
 
 
-def processing(img,opt):
+def processing(img,opt,name):
     if opt.isTrain:
         crop_func = transforms.RandomCrop(opt.CropSize)
     elif opt.no_crop:
@@ -204,7 +203,7 @@ def processing(img,opt):
                 crop_func,
                 flip_func,
                 transforms.ToTensor(),
-                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+                transforms.Normalize(mean=MEAN[name], std=STD[name]),
                 ])
     return trans(img)
 
@@ -220,31 +219,6 @@ STD = {
 }
 
 
-def processing_UnivFD(img,opt):
-    if opt.isTrain:
-        crop_func = transforms.RandomCrop(opt.CropSize)
-    elif opt.no_crop:
-        crop_func = transforms.Lambda(lambda img: img)
-    else:
-        crop_func = transforms.CenterCrop(opt.CropSize)
-
-    if opt.isTrain and not opt.no_flip:
-        flip_func = transforms.RandomHorizontalFlip()
-    else:
-        flip_func = transforms.Lambda(lambda img: img)
-    if not opt.isTrain and opt.no_resize:
-        rz_func = transforms.Lambda(lambda img: img)
-    else:
-        rz_func = transforms.Lambda(lambda img: custom_resize(img, opt))
-    trans = transforms.Compose([
-                rz_func,
-                transforms.Lambda(lambda img: data_augment(img, opt) if opt.isTrain else img),
-                crop_func,
-                flip_func,
-                transforms.ToTensor(),
-                transforms.Normalize( mean=MEAN['clip'], std=STD['clip'] ),
-                ])
-    return trans(img)
 
 
 
@@ -278,7 +252,7 @@ def processing_LGrad(img,gen_model,opt):
         img = Image.open(BytesIO(buffer)).convert('RGB')
     else:
         print("保存到内存失败")
-    img=processing(img,opt)
+    img=processing(img,opt,'imagenet')
     return img
 
 
@@ -357,7 +331,7 @@ def processing_LNP(img,model_restoration,opt,imgname):
             denoised_img = Image.open(BytesIO(buffer)).convert('RGB')
         else:
             print("保存到内存失败")
-    denoised_img=processing(denoised_img,opt)
+    denoised_img=processing(denoised_img,opt,'imagenet')
     return denoised_img
 
 
@@ -440,7 +414,7 @@ def processing_DIRE(img,opt,imgname):
         else:
             print("保存到内存失败")
     
-    img_dire=processing(img_dire,opt)
+    img_dire=processing(img_dire,opt,'imagenet')
 
    
     

@@ -2,9 +2,9 @@ import functools
 import torch
 import torch.nn as nn
 from networks.resnet import resnet50
-from networks.resnet import resnet18
+
 from networks.base_model import BaseModel, init_weights
-from networks.StegNet.StegNet import Net
+
 from util import get_model
 
 class Trainer(BaseModel):
