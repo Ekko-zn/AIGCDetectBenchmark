@@ -5,6 +5,7 @@
    <a href="https://github.com/Ekko-zn/AIGCDetectBenchmark"><img src="https://img.shields.io/github/stars/Ekko-zn/AIGCDetectBenchmark"/></a>
    <a href="https://drive.google.com/drive/folders/1p4ewuAo7d5LbNJ4cKyh10Xl9Fg2yoFOw?usp=drive_link"><img src="https://img.shields.io/badge/Database-Release-green"></a>
    <a href="https://fdmas.github.io/AIGCDetect/"><img src="https://img.shields.io/badge/page-AIGCDetectBenchmark-orange"/></a>
+   <a href="https://fdmas.github.io/AIGCDetect/Awesome-AIGCDetection.html"><img src="https://img.shields.io/badge/Awesome-AIGCDetection-yellow"></a>
 </div>
 
 
