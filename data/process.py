@@ -136,6 +136,8 @@ def get_processing_model(opt):
         DIRE_args,_ = create_argparser().parse_known_args() # DIRE载入diffusion模型所需参数
         if opt.isTrain:
             DIRE_args.use_fp16=True
+        else:
+            DIRE_args.use_fp16=False
         opt.DIRE_args=DIRE_args
         print(DIRE_args)
         diffusion_model, diffusion = create_model_and_diffusion(**args_to_dict(DIRE_args, model_and_diffusion_defaults().keys()))
