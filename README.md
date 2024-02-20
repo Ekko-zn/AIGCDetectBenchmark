@@ -14,6 +14,8 @@
 #  A Comprehensive Benchmark for AI-generated Image Detection
 
 ## News
+:memo: [2024-02-19 :fireworks:] Add newest AIGC-Detection papers. [Awesome-AIGCDetection](https://fdmas.github.io/AIGCDetect/Awesome-AIGCDetection.html)
+
 :memo: [2024-01-02 :fireworks:] Release the collection of AIGC-Detection papers published from 2020 onwards. [Awesome-AIGCDetection](https://fdmas.github.io/AIGCDetect/Awesome-AIGCDetection.html)
 
 :star2: [2023-12-25:christmas_tree:] Release training code for 8 detection methods
