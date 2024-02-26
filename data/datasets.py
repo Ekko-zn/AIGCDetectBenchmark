@@ -91,12 +91,9 @@ def custom_augment(img, opt):
     # print('height, width:'+str(height)+str(width))
     # resize
     if opt.noise_type=='resize':
-        if opt.detect_method=='Fusing':
-            height, width = img.shape[0], img.shape[1]
-            img = resize(img, (int(height/2), int(width/2)))
-        else:
-            height, width = img.height, img.width
-            img = torchvision.transforms.Resize((int(height/2),int(width/2)))(img) 
+        
+        height, width = img.height, img.width
+        img = torchvision.transforms.Resize((int(height/2),int(width/2)))(img) 
 
     img = np.array(img)
     # img = img[0:-1:4,0:-1:4,:]
@@ -195,8 +192,8 @@ class read_data_new():
         elif self.opt.detect_method == 'DIRE':
             img = processing_DIRE(img,self.opt,imgname)
         elif self.opt.detect_method == 'UnivFD':
-            # print("UnivFD processing")
             img = processing(img,self.opt,'clip')
+
         else:
             raise ValueError(f"Unsupported model_type: {self.opt.detect_method}")
 

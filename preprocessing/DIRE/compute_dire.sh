@@ -1,7 +1,7 @@
 ## set MODEL_PATH, num_samples, has_subfolder, images_dir, recons_dir, dire_dir
 export CUDA_VISIBLE_DEVICES=0
 export NCCL_P2P_DISABLE=1
-MODEL_PATH="/data_19/AIGCDetect/AIGCDetect/weights/preprocessing/lsun_bedroom.pt" # "models/lsun_bedroom.pt, models/256x256_diffusion_uncond.pt"
+MODEL_PATH="./weights/preprocessing/lsun_bedroom.pt" # "models/lsun_bedroom.pt, models/256x256_diffusion_uncond.pt"
 
 SAMPLE_FLAGS="--batch_size 16 --num_samples 2000 --timestep_respacing ddim20 --use_ddim True"
 SAVE_FLAGS="--images_dir /hotdata/share/AIGCDetect/test/DALLE2 --recons_dir ./result/recons/DALLE2 --dire_dir ./result/dire/DALLE2"

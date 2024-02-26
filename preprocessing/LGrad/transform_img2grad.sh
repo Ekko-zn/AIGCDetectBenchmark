@@ -18,7 +18,8 @@ do
             ${Valrootdir}${Imgdir} \
             ${Savedir}${Imgdir} \
             ./weights/preprocessing/karras2019stylegan-bedrooms-256x256_discriminator.pth \
-            1
+            1\
+            resize
     done
 done
 
@@ -35,7 +36,8 @@ do
             ${Trainrootdir}${Imgdir} \
             ${Savedir}${Imgdir} \
             ./weights/preprocessing/karras2019stylegan-bedrooms-256x256_discriminator.pth \
-            1
+            1\
+            resize
     done
 done
 

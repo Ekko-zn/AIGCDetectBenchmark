@@ -155,7 +155,8 @@ def get_processing_model(opt):
     elif opt.detect_method =='FreDect':
         opt.dct_mean = torch.load('./weights/auxiliary/dct_mean').permute(1,2,0).numpy()
         opt.dct_var = torch.load('./weights/auxiliary/dct_var').permute(1,2,0).numpy()
-        
+    
+
     elif opt.detect_method in ['CNNSpot','Gram','Steg','Fusing',"UnivFD"]:
         opt=opt
     else:
@@ -184,7 +185,7 @@ def custom_resize(img, opt):
 
 
 
-def processing(img,opt,name):
+def processing(img, opt, name):
     if opt.isTrain:
         crop_func = transforms.RandomCrop(opt.CropSize)
     elif opt.no_crop:
@@ -202,7 +203,11 @@ def processing(img,opt,name):
         rz_func = transforms.Lambda(lambda img: custom_resize(img, opt))
     trans = transforms.Compose([
                 rz_func,
+<<<<<<< Updated upstream
                 transforms.Lambda(lambda img: data_augment(img, opt) if opt.isTrain else img),
+=======
+                transforms.Lambda(lambda img: data_augment(img, opt) if (opt.isTrain or opt.isVal) else img),
+>>>>>>> Stashed changes
                 crop_func,
                 flip_func,
                 transforms.ToTensor(),
@@ -255,7 +260,7 @@ def processing_LGrad(img,gen_model,opt):
         img = Image.open(BytesIO(buffer)).convert('RGB')
     else:
         print("保存到内存失败")
-    img=processing(img,opt,'imagenet')
+    img = processing(img,opt,'imagenet')
     return img
 
 
@@ -422,3 +427,17 @@ def processing_DIRE(img,opt,imgname):
    
     
     return img_dire
+
+
+
+def ED(img):
+    r1,r2 = img[:,0:-1,:], img[:,1::,:]
+    r3,r4 = img[:,:,0:-1], img[:,:,1::]
+    r5,r6 = img[:,0:-1,0:-1], img[:,1::,1::]
+    r7,r8 = img[:,0:-1,1::], img[:,1::,0:-1]
+    s1 = torch.sum(torch.abs(r1 - r2)).item()
+    s2 = torch.sum(torch.abs(r3 - r4)).item()
+    s3 = torch.sum(torch.abs(r5 - r6)).item()
+    s4 = torch.sum(torch.abs(r7 - r8)).item() 
+    return s1+s2+s3+s4
+

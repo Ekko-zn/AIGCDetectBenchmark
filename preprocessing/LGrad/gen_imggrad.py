@@ -5,6 +5,7 @@ import torch
 from glob import glob
 import cv2
 import sys
+sys.path.append('.')
 import os
 import PIL.Image
 import torch.nn.functional as F

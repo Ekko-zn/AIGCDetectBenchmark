@@ -2,6 +2,17 @@ import os
 import torch
 from collections import OrderedDict
 import argparse
+
+import torch.nn as nn
+import numpy as np
+import random
+import torchvision
+
+import networks.univfd_models as univfd_models
+import networks.resnet_gram as ResnetGram
+from networks.Patch5Model import Patch5Model
+from networks.resnet import resnet50
+
 from preprocessing_model.guided_diffusion.script_util import (
     NUM_CLASSES,
     model_and_diffusion_defaults,
@@ -9,14 +20,6 @@ from preprocessing_model.guided_diffusion.script_util import (
     add_dict_to_argparser,
     args_to_dict,
 )
-import torchvision
-import networks.univfd_models as univfd_models
-import networks.resnet_gram as ResnetGram
-from networks.Patch5Model import Patch5Model
-from networks.resnet import resnet50
-import torch.nn as nn
-import numpy as np
-import random
 
 def set_random_seed(seed=42):
     torch.manual_seed(seed)
@@ -103,5 +106,6 @@ def get_model(opt):
         if opt.isTrain:
             torch.nn.init.normal_(model.fc.weight.data, 0.0, opt.init_gain) 
         return model
+
     else:
         raise ValueError(f"Unsupported model_type: {opt.detect_method}")

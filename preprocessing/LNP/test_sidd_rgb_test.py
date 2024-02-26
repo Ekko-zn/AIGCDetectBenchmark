@@ -5,6 +5,9 @@
 ## https://arxiv.org/abs/2003.07761
 """
 
+import sys
+sys.path.append('.')
+# print(sys.path)
 import numpy as np
 import os
 import argparse
@@ -50,18 +53,16 @@ count = 0
 def get_image_paths(folder_path):
     image_paths = []
     
-    # 遍历文件夹中的文件
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
         
-        # 检查文件是否是图像文件
         if file_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp','.PNG','.JPEG')):
             image_paths.append(file_path)
     
     return image_paths
 
 
-keys=['stylegan2/car','stylegan2/cat','stylegan2/church','stylegan2/horse','whichfaceisreal']
+keys=['stylegan2/car','stylegan2/cat','stylegan2/church','stylegan2/horse','whichfaceisreal'] # replace with your own dataset
 for key in keys:
     image_paths=[]
     for sub in ['0_real','1_fake']:

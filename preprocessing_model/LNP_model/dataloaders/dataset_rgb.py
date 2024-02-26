@@ -2,8 +2,8 @@ import numpy as np
 import os
 from torch.utils.data import Dataset
 import torch
-from utils.image_utils import is_png_file, load_img
-from utils.GaussianBlur import get_gaussian_kernel
+from preprocessing_model.LNP_model.utils.image_utils import is_png_file, load_img
+from preprocessing_model.LNP_model.utils.GaussianBlur import get_gaussian_kernel
 
 import torch.nn.functional as F
 
