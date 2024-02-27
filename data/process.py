@@ -203,11 +203,7 @@ def processing(img, opt, name):
         rz_func = transforms.Lambda(lambda img: custom_resize(img, opt))
     trans = transforms.Compose([
                 rz_func,
-<<<<<<< Updated upstream
-                transforms.Lambda(lambda img: data_augment(img, opt) if opt.isTrain else img),
-=======
                 transforms.Lambda(lambda img: data_augment(img, opt) if (opt.isTrain or opt.isVal) else img),
->>>>>>> Stashed changes
                 crop_func,
                 flip_func,
                 transforms.ToTensor(),
