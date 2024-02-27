@@ -50,7 +50,7 @@ For LGrad, LNP and DIRE, we recommand you use files `gen_imggrad.py`, `test_sidd
    ```
 2. LGrad
    ```
-   python preprocessing/LGrad/transform_img2grad.sh # change file paths
+   sh preprocessing/LGrad/transform_img2grad.sh # change file paths
    python train.py --name test --dataroot [your data path] --detect_method CNNSpot --blur_prob 0.1 --blur_sig 0.0,3.0 --jpg_prob 0.1 --jpg_method cv2,pil --jpg_qual 30,100 
    ```
 3. LNP
