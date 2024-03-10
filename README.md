@@ -44,7 +44,7 @@
 |LNP|Detecting Generated Images by Real Images|:white_check_mark:|:white_check_mark:|
 |DIRE|DIRE for Diffusion-Generated Image Detection|:white_check_mark:|:white_check_mark:|
 |UnivFD|Towards Universal Fake Image Detectors that Generalize Across Generative Models|:white_check_mark:|:white_check_mark:|
-|RPTC|Rich and Poor Texture Contrast: A Simple yet Effective Approach for AI-generated Image Detection|⚙️|⚙️|
+|PatchCraft|PatchCraft: Exploring Texture Patch for Efficient AI-generated Image Detection|⚙️|⚙️|
 
 ## Setup
 Refer to [CNNSpot](https://github.com/peterwang512/CNNDetection) and [Dire](https://github.com/ZhendongWang6/DIRE)
