@@ -14,7 +14,8 @@
 #  A Comprehensive Benchmark for AI-generated Image Detection
 
 ## News
-🆕 [2025-04-01] The official test code implementation of our paper "PatchCraft: Exploring Texture Patch for Efficient AI-generated Image Detection" is available in https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchmark/files.
+:new: [2025-04-01] The official test code implementation of our paper "PatchCraft: Exploring Texture Patch for Efficient AI-generated Image Detection" is available in https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchmark/files.
+
 :exclamation: [2024-03-08] Our paper "Rich and Poor Texture Contrast: A Simple yet Effective Approach for AI-generated Image Detection" has changed name into 
 
 ```diff
