@@ -14,7 +14,9 @@
 #  A Comprehensive Benchmark for AI-generated Image Detection
 
 ## News
-:new: [2025-04-01] The official test code implementation of our paper "PatchCraft: Exploring Texture Patch for Efficient AI-generated Image Detection" is available in https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchmark/files.
+:new: [2025-04-01] The official test code implementation of our paper "PatchCraft: Exploring Texture Patch for Efficient AI-generated Image Detection" is available in [modelscope](https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchMark/files).
+
+:new: [2025-04-01] 
 
 :exclamation: [2024-03-08] Our paper "Rich and Poor Texture Contrast: A Simple yet Effective Approach for AI-generated Image Detection" has changed name into 
 
@@ -123,10 +125,10 @@ python eval_all.py --model_path ./weights/CNNSpot.pth --detect_method CNNSpot  -
 
 ## Dataset
 ### Training Set
-We adopt the training set in [CNNSpot](https://github.com/peterwang512/CNNDetection), you can download it form [link]([https://drive.google.com/file/d/1iVNBV0glknyTYGA9bCxT_d0CVTOgGcKh/view?usp=sharing](https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchmark/file/view/master?id=88429&status=2&fileName=AIGCDetectionBenchmark%252Ftest.zip))
+We adopt the training set in [CNNSpot](https://github.com/peterwang512/CNNDetection).
 
 ### Test Set and Checkpoints
-The whole test set and checkpoints we used in our experiments can be downloaded from [BaiduNetdisk](https://pan.baidu.com/s/1dZz7suD-X5h54wCC9SyGBA?pwd=l30u) or [Google Drive](https://drive.google.com/drive/folders/1p4ewuAo7d5LbNJ4cKyh10Xl9Fg2yoFOw?usp=drive_link)
+The whole test set and checkpoints we used in our experiments can be downloaded from [BaiduNetdisk](https://pan.baidu.com/s/1dZz7suD-X5h54wCC9SyGBA?pwd=l30u) or [modelscope](https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchmark/file/view/master?id=88429&status=2&fileName=AIGCDetectionBenchmark%252Ftest.zip)
 
 
 ## Acknowledgments
