@@ -14,6 +14,8 @@
 #  A Comprehensive Benchmark for AI-generated Image Detection
 
 ## News
+:star2: [2026-03-05] Our paper ["Self-Supervised AI-Generated Image Detection: A Camera Metadata Perspective"](https://ieeexplore.ieee.org/abstract/document/11353045/) has been accepted for publication in IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI) :tada: :tada: :tada:. Official code has been released on [Github](https://github.com/Ekko-zn/SDAIE).
+
 :new: [2025-04-01] The official test code implementation of our paper "PatchCraft: Exploring Texture Patch for Efficient AI-generated Image Detection" is available in [modelscope](https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchMark/files).
 
 :new: [2025-04-01] The whole test set we used in our experiments can be downloaded from [modelscope](https://modelscope.cn/datasets/aemilia/AIGCDetectionBenchmark/file/view/master?id=88429&status=2&fileName=AIGCDetectionBenchmark%252Ftest.zip)
